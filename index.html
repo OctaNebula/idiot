@@ -14,7 +14,7 @@
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            width: 100%; /* Ensure the page width is 100% */
+            width: 100%;
         }
         #startButton {
             background: none;
@@ -34,9 +34,9 @@
         video {
             display: none;
             position: absolute;
-            width: 80%; /* Set video width to 50% of the screen */
-            height: 80%; /* Set video height to 50% of the screen */
-            object-fit: contain; /* Maintain aspect ratio */
+            width: 80%;
+            height: 80%;
+            object-fit: contain;
         }
     </style>
 </head>
@@ -44,7 +44,7 @@
     <button id="startButton">
         <img src="assets/idiot.png" alt="Click Me!">
     </button>
-    <div id="buttonText">Click Me!</div>
+    <div id="buttonText">click me!</div>
     <video id="idiotVideo">
         <source src="assets/idiot.mp4" type="video/mp4">
     </video>
@@ -53,8 +53,17 @@
         const startButton = document.getElementById('startButton');
         const video = document.getElementById('idiotVideo');
 
-        startButton.addEventListener('click', () => {
-            document.body.style.width = '100%'; // Ensure horizontal page size is 100%
+        startButton.addEventListener('click', async () => {
+            // Request fullscreen
+            if (document.documentElement.requestFullscreen) {
+                await document.documentElement.requestFullscreen();
+            } else if (document.documentElement.webkitRequestFullscreen) { // Safari
+                await document.documentElement.webkitRequestFullscreen();
+            } else if (document.documentElement.msRequestFullscreen) { // IE/Edge
+                await document.documentElement.msRequestFullscreen();
+            }
+
+            document.body.style.width = '100%';
             video.style.display = 'block';
             video.muted = false;
             video.play();
