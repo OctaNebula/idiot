@@ -23,22 +23,26 @@
     <video autoplay loop muted playsinline id="idiotVideo">
         <source src="assets/idiot.mp4" type="video/mp4">
     </video>
+    <audio autoplay loop id="idiotAudio">
+        <source src="assets/idiot.mp3" type="audio/mpeg">
+    </audio>
 
     <script>
         const video = document.getElementById('idiotVideo');
+        const audio = document.getElementById('idiotAudio');
 
         // Ensure autoplay works by starting muted
         video.muted = true;
 
-        // Keep the video muted to comply with autoplay policies
-        video.addEventListener('play', () => {
-            video.muted = true;
-        });
-
-        // Prevent pausing and disabling controls
+        // Prevent pausing and disabling controls for video
         video.addEventListener('pause', () => video.play());
         video.addEventListener('click', (e) => e.preventDefault());
         video.addEventListener('contextmenu', (e) => e.preventDefault());
+
+        // Prevent pausing and disabling controls for audio
+        audio.addEventListener('pause', () => audio.play());
+        audio.addEventListener('click', (e) => e.preventDefault());
+        audio.addEventListener('contextmenu', (e) => e.preventDefault());
     </script>
 </body>
 </html>
