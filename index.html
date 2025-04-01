@@ -22,10 +22,8 @@
             border: none;
             border-radius: 5px;
         }
-        video, audio {
-            display: none;
-        }
         video {
+            display: none;
             position: absolute;
             width: 100%;
             height: 100%;
@@ -35,24 +33,18 @@
 </head>
 <body>
     <button id="startButton">Click Me!</button>
-    <video autoplay loop muted playsinline id="idiotVideo">
+    <video id="idiotVideo">
         <source src="assets/idiot.mp4" type="video/mp4">
     </video>
-    <audio autoplay loop id="idiotAudio">
-        <source src="assets/idiot.mp3" type="audio/mpeg">
-    </audio>
 
     <script>
         const startButton = document.getElementById('startButton');
         const video = document.getElementById('idiotVideo');
-        const audio = document.getElementById('idiotAudio');
 
         startButton.addEventListener('click', () => {
             video.style.display = 'block';
-            audio.style.display = 'block';
             video.muted = false;
             video.play();
-            audio.play();
             startButton.style.display = 'none';
         });
 
@@ -60,11 +52,6 @@
         video.addEventListener('pause', () => video.play());
         video.addEventListener('click', (e) => e.preventDefault());
         video.addEventListener('contextmenu', (e) => e.preventDefault());
-
-        // Prevent pausing and disabling controls for audio
-        audio.addEventListener('pause', () => audio.play());
-        audio.addEventListener('click', (e) => e.preventDefault());
-        audio.addEventListener('contextmenu', (e) => e.preventDefault());
     </script>
 </body>
 </html>
