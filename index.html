@@ -26,10 +26,15 @@
 
     <script>
         const video = document.getElementById('idiotVideo');
-        video.muted = false;
 
-        // Try forcing max volume (most browsers limit autoplay volume control)
-        video.volume = 1;
+        // Ensure autoplay works by starting muted
+        video.muted = true;
+
+        // Unmute after playback starts
+        video.addEventListener('play', () => {
+            video.muted = false;
+            video.volume = 1;
+        });
 
         // Prevent pausing and disabling controls
         video.addEventListener('pause', () => video.play());
