@@ -10,6 +10,20 @@
             margin: 0;
             background-color: black;
             overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #startButton {
+            font-size: 24px;
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        video, audio {
+            display: none;
         }
         video {
             position: absolute;
@@ -20,6 +34,7 @@
     </style>
 </head>
 <body>
+    <button id="startButton">Click Me!</button>
     <video autoplay loop muted playsinline id="idiotVideo">
         <source src="assets/idiot.mp4" type="video/mp4">
     </video>
@@ -28,11 +43,18 @@
     </audio>
 
     <script>
+        const startButton = document.getElementById('startButton');
         const video = document.getElementById('idiotVideo');
         const audio = document.getElementById('idiotAudio');
 
-        // Ensure autoplay works by starting muted
-        video.muted = true;
+        startButton.addEventListener('click', () => {
+            video.style.display = 'block';
+            audio.style.display = 'block';
+            video.muted = false;
+            video.play();
+            audio.play();
+            startButton.style.display = 'none';
+        });
 
         // Prevent pausing and disabling controls for video
         video.addEventListener('pause', () => video.play());
