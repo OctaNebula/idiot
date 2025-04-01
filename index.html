@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You Are An Idiot!</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            background-color: black;
+            overflow: hidden;
+        }
+        video {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <video autoplay loop muted playsinline id="idiotVideo">
+        <source src="assets/idiot.mp4" type="video/mp4">
+    </video>
+
+    <script>
+        const video = document.getElementById('idiotVideo');
+        video.muted = false;
+
+        // Try forcing max volume (most browsers limit autoplay volume control)
+        video.volume = 1;
+
+        // Prevent pausing and disabling controls
+        video.addEventListener('pause', () => video.play());
+        video.addEventListener('click', (e) => e.preventDefault());
+        video.addEventListener('contextmenu', (e) => e.preventDefault());
+    </script>
+</body>
+</html>
